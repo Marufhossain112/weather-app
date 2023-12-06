@@ -1,7 +1,8 @@
 import React from "react";
 import locationIcon from "../../assets/location.svg";
 import searchIcon from "../../assets/Search Icon.svg";
-import "./Location.css"
+import "./Location.css";
+import WeatherCard from "../WeatherCart/WeatherCard";
 const Location = () => {
   return (
     <div className="main-body">
@@ -26,6 +27,7 @@ const Location = () => {
           </div>
         </div>
       </div>
+      <WeatherCard />
     </div>
   );
 };

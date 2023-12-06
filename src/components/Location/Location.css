@@ -47,6 +47,9 @@
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 }
+.search-input:focus {
+  outline: none;
+}
 
 /* Style for the search icon */
 .search-icon {

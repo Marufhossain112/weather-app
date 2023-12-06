@@ -6,9 +6,7 @@ import Location from "./components/Location/Location";
 const Layout = () => {
   return (
     <div>
-      <header>
-        <Navbar />
-      </header>
+      <Navbar />
       <Location />
     </div>
   );
