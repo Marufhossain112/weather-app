@@ -6,6 +6,7 @@
   grid-template-columns: repeat(6, minmax(150px, 1fr));
   gap: 2rem;
   align-items: end;
+  overflow: auto;
 }
 .weather-card-container > div {
   display: flex;
