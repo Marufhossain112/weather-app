@@ -6,7 +6,7 @@ import rainy from "../../assets/rain-hail.svg";
 import snowy from "../../assets/snowy.svg";
 import windy from "../../assets/windy.svg";
 
-const WeatherCard = ({ search, setSearch }) => {
+const WeatherCard = ({ search, sunrise, sunset }) => {
   const [forecastData, setForecastData] = useState([]);
   useEffect(() => {
     // Fetch forecast data and update state
@@ -158,8 +158,8 @@ const WeatherCard = ({ search, setSearch }) => {
                         °F
                       </span>
                       <span> {dailyData.main.humidity}%</span>
-                      <span>06:21 AM</span>
-                      <span>05:93 PM</span>
+                      <span>{sunrise}</span>
+                      <span>{sunset}</span>
                     </div>
                   </div>
                 </div>

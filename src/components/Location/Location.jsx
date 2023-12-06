@@ -7,6 +7,8 @@ const Location = ({ search, setSearch }) => {
   const [cityDetails, setCityDetails] = useState([]);
   const [convertedLatitude, setConvertedLatitude] = useState("");
   const [convertedLongitude, setConvertedLongitude] = useState("");
+  const [convertedSunrise, setConvertedSunrise] = useState("");
+  const [convertedSunset, setConvertedSunset] = useState("");
   const api_key = "017f848d544182b554ec443a1c0bbf1d";
 
   const convertToDMS = (decimalDegrees) => {
@@ -15,6 +17,22 @@ const Location = ({ search, setSearch }) => {
     const minutes = Math.floor(minutesDecimal);
     const seconds = (minutesDecimal - minutes) * 60;
     return `${degrees}°${minutes}'${seconds.toFixed(2)}"`;
+  };
+  const formatTimeToAMPM = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    // Format hours to 12-hour format
+    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+
+    // Add leading zero to minutes if needed
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+    // Determine if it's AM or PM
+    const period = hours < 12 ? "AM" : "PM";
+
+    return `${formattedHours}:${formattedMinutes} ${period}`;
   };
 
   useEffect(() => {
@@ -37,6 +55,16 @@ const Location = ({ search, setSearch }) => {
         if (longitude) {
           const resultLongitude = convertToDMS(longitude);
           setConvertedLongitude(resultLongitude);
+        }
+        const sunrise = data?.city?.sunrise;
+        if (sunrise) {
+          const resultSunrise = formatTimeToAMPM(sunrise);
+          setConvertedSunrise(resultSunrise);
+        }
+        const sunset = data?.city?.sunset;
+        if (sunset) {
+          const resultSunset = formatTimeToAMPM(sunset);
+          setConvertedSunset(resultSunset);
         }
       } catch (error) {
         console.error("Error fetching forecast data:", error);
@@ -77,7 +105,12 @@ const Location = ({ search, setSearch }) => {
           </div>
         </div>
       </div>
-      <WeatherCard setSearch={setSearch} search={search} />
+      <WeatherCard
+        setSearch={setSearch}
+        search={search}
+        sunrise={convertedSunrise}
+        sunset={convertedSunset}
+      />
     </div>
   );
 };
