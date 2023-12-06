@@ -5,7 +5,18 @@ import "./Location.css";
 import WeatherCard from "../WeatherCart/WeatherCard";
 const Location = ({ search, setSearch }) => {
   const [cityDetails, setCityDetails] = useState([]);
+  const [convertedLatitude, setConvertedLatitude] = useState("");
+  const [convertedLongitude, setConvertedLongitude] = useState("");
   const api_key = "017f848d544182b554ec443a1c0bbf1d";
+
+  const convertToDMS = (decimalDegrees) => {
+    const degrees = Math.floor(decimalDegrees);
+    const minutesDecimal = (decimalDegrees - degrees) * 60;
+    const minutes = Math.floor(minutesDecimal);
+    const seconds = (minutesDecimal - minutes) * 60;
+    return `${degrees}°${minutes}'${seconds.toFixed(2)}"`;
+  };
+
   useEffect(() => {
     // Fetch forecast data and update state
     const fetchData = async () => {
@@ -15,24 +26,28 @@ const Location = ({ search, setSearch }) => {
         );
         const data = await response.json();
         setCityDetails(data);
+
+        const latitude = data?.city?.coord?.lat;
+        if (latitude) {
+          const resultLatitude = convertToDMS(latitude);
+          // console.log({ result });
+          setConvertedLatitude(resultLatitude);
+        }
+        const longitude = data?.city?.coord?.lon;
+        if (longitude) {
+          const resultLongitude = convertToDMS(longitude);
+          setConvertedLongitude(resultLongitude);
+        }
       } catch (error) {
         console.error("Error fetching forecast data:", error);
       }
     };
+
     fetchData();
   }, [search]);
+
   console.log({ cityDetails });
 
-  // const handleSearch = async () => {
-  //   if (search === "") {
-  //     return 0;
-  //   }
-
-  //   const response = await fetch(url);
-  //   const data = await response.json();
-  //   console.log("daata", data);
-  //   setSearch("");
-  // };
   return (
     <div className="main-body">
       <div className="location-search-container">
@@ -44,7 +59,9 @@ const Location = ({ search, setSearch }) => {
             </span>
           </div>
           <div>
-            <span className="location-address">27°10'36'' N & 78°0'29'' E</span>
+            <span className="location-address">
+              {convertedLatitude} N & {convertedLongitude} E
+            </span>
           </div>
         </div>
         <div className="search-container">
