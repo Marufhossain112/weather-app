@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
+import Location from "./components/Location/Location";
 
 const Layout = () => {
   return (
@@ -8,7 +9,7 @@ const Layout = () => {
       <header>
         <Navbar />
       </header>
-      <Outlet></Outlet>
+      <Location />
     </div>
   );
 };

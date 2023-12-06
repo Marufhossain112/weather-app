@@ -1,8 +1,8 @@
 import React from "react";
-import locationIcon from "../src/assets/location.svg";
-import searchIcon from "../src/assets/Search Icon.svg";
-
-const Home = () => {
+import locationIcon from "../../assets/location.svg";
+import searchIcon from "../../assets/Search Icon.svg";
+import "./Location.css"
+const Location = () => {
   return (
     <div className="main-body">
       <div className="location-search-container">
@@ -30,4 +30,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Location;
