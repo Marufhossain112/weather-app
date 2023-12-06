@@ -9,19 +9,24 @@ const Home = () => {
         <div className="location-container flex flex-col gap-1">
           <div className="flex gap-2">
             <img src={locationIcon} alt="" />
-            <span className="location-name">Agra, Uttar Pradesh</span>
+            <span
+              className="location-name"
+              onClick={(e) => console.log(e.target)}
+            >
+              Agra, Uttar Pradesh
+            </span>
           </div>
           <div>
             <span className="location-address">27°10'36'' N & 78°0'29'' E</span>
           </div>
         </div>
-        <div class="search-container">
+        <div className="search-container">
           <input
             type="text"
-            class="search-input"
+            className="search-input"
             placeholder="Search your city here..."
           />
-          <div class="search-icon">
+          <div className="search-icon">
             <img src={searchIcon} alt="" />
           </div>
         </div>

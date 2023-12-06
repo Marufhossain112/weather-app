@@ -3,18 +3,31 @@
   margin-top: 3.5rem !important;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(6, minmax(150px, 1fr));
   gap: 2rem;
+  grid-template-columns: 150px auto;
   align-items: end;
   overflow: hidden;
 }
-.weather-card-container > div {
+.weather-cart-main {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  gap: 1rem;
+}
+.date {
+  margin: auto;
+  padding-bottom: 4px;
+}
+.card-parent {
+  display: flex;
+  flex-direction: column;
+}
+/* .weather-card-container > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-}
+} */
 
 .date {
   color: #444;
