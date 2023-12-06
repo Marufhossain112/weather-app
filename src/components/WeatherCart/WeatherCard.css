@@ -6,7 +6,7 @@
   grid-template-columns: repeat(6, minmax(150px, 1fr));
   gap: 2rem;
   align-items: end;
-  overflow: auto;
+  overflow: hidden;
 }
 .weather-card-container > div {
   display: flex;
@@ -110,4 +110,10 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+@media (max-width: 576px) {
+  .weather-card-container {
+    overflow: auto;
+  }
 }
