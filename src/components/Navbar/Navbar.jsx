@@ -9,7 +9,10 @@ const Navbar = () => {
         <img src={logo} alt="" />
         <span className="nav-title">Weather 99</span>
       </div>
-      <div className="refresh-container">
+      <div
+        className="refresh-container"
+        onClick={() => window.location.reload()}
+      >
         <img src={refresh} alt="" />
         <span className="refresh">Refresh</span>
       </div>
